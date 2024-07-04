@@ -56,14 +56,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const apiUrl = `https://newsapi.org/v2/top-headlines?category=${category}&country=us&apiKey=${apiKey}`;
 
         fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                displayNews(data.articles, container);
-            })
-            .catch(error => {
-                console.error(`Error fetching ${category} news:`, error);
-                container.innerHTML = '<p>Could not fetch news headlines.</p>';
-            });
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (!data.articles || !Array.isArray(data.articles)) {
+            throw new Error('Invalid data format or empty articles array');
+        }
+        displayNews(data.articles, container);
+    })
+    .catch(error => {
+        console.error(`Error fetching ${category} news:`, error);
+        container.innerHTML = '<p>Could not fetch news headlines.</p>';
+    });
+
     }
 
     // Function to display news articles
