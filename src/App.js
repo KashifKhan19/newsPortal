@@ -77,7 +77,7 @@ const App = () => {
                 </div>
             </header>
             <main>
-                <NewsSection title="General hi News Headlines" category="general" />
+                <NewsSection title="General News Headlines" category="general" />
                 <NewsSection title="Sports News" category="sports" />
                 <NewsSection title="Movies News" category="entertainment" />
             </main>
