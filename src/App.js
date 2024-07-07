@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
+import axios from 'axios'; // Import axios for API calls
 
 const NewsSection = ({ title, category }) => {
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {
         const fetchNews = async () => {
+            const NEWS_API_KEY = '2918c18dd5da4a09bf22e359e1b2d9c9';
+            const url = `https://newsapi.org/v2/top-headlines?category=${category}&apiKey=${NEWS_API_KEY}&country=us`;
+
             try {
-                const response = await fetch(`http://localhost:5000/api/news/${category}`);
-                const data = await response.json();
-                setArticles(data.articles);
+                const response = await axios.get(url);
+                setArticles(response.data.articles);
             } catch (error) {
                 console.error(`Error fetching ${category} news:`, error);
             }
