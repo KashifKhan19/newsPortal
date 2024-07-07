@@ -75,7 +75,7 @@ const App = () => {
         <div className="container">
             <header>
                 <div className="header-content">
-                    <h1>News Portal</h1>
+                    <h1>News Portal 123</h1>
                     <p>Welcome to News Portal. <br />Get all the latest news headlines</p>
                 </div>
             </header>
